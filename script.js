@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     console.log(e.offsetY);
   });
   draw();
+  duplicateCheck();
 });
 
 class Cell {
@@ -39,17 +40,14 @@ class Cell {
 }
 
 for (let j = 0; j < 8; j++) {
+  level.grid[j] = [];
   for (let i = 0; i < 8; i++) {
-    cells.push(
-      new Cell(
-        i * spriteSize,
-        i,
-        level.colors[Math.floor(Math.random() * level.colors.length)],
-        j
-      )
-    );
+    let colorId = Math.floor(Math.random() * level.colors.length);
+    level.grid[j][i] = colorId;
+    cells.push(new Cell(i * spriteSize, i, level.colors[colorId], j));
   }
 }
+console.log(level.grid);
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -68,20 +66,6 @@ function update() {
   if (bunches.length > 0) {
     console.log('do something');
   }
-}
-
-function initializeGrid() {
-  // for (let i = 0; i < level.rows; i++) {
-  //   level.grid.push([]);
-  //   for (let j = 0; j < level.columns; j++) {
-  //     let idNumber = Math.floor(Math.random() * level.colors.length);
-  //     level.grid[i][j] = idNumber;
-  //     ctx.fillStyle = level.colors[idNumber];
-  //     ctx.fillRect(i * spriteSize, j * spriteSize, spriteSize, spriteSize);
-  //     ctx.strokeRect(i * spriteSize, j * spriteSize, spriteSize, spriteSize);
-  //   }
-  // }
-  duplicateCheck();
 }
 
 function duplicateCheck() {
