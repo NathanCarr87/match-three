@@ -39,16 +39,18 @@ class Cell {
 }
 
 for (let j = 0; j < 8; j++) {
-  for (let i = 0; i < 8; i++) {
-    cells.push(
-      new Cell(
-        i * spriteSize,
-        i,
-        level.colors[Math.floor(Math.random() * level.colors.length)],
-        j
-      )
-    );
-  }
+  setTimeout(() => {
+    for (let i = 0; i < 8; i++) {
+      cells.push(
+        new Cell(
+          i * spriteSize,
+          i,
+          level.colors[Math.floor(Math.random() * level.colors.length)],
+          j
+        )
+      );
+    }
+  }, 500);
 }
 
 function draw() {
@@ -57,9 +59,8 @@ function draw() {
     cell.draw();
     cell.y += cell.vy;
 
-    console.log(cell.row)
     if (cell.y + cell.vy > canvas.height - spriteSize * cell.row) {
-      cell.y = spriteSize * level.columns - spriteSize;
+      cell.y = spriteSize * level.columns - spriteSize * cell.row;
     }
   });
   raf = window.requestAnimationFrame(draw);
