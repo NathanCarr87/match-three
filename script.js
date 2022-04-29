@@ -39,18 +39,16 @@ class Cell {
 }
 
 for (let j = 0; j < 8; j++) {
-  setTimeout(() => {
-    for (let i = 0; i < 8; i++) {
-      cells.push(
-        new Cell(
-          i * spriteSize,
-          i,
-          level.colors[Math.floor(Math.random() * level.colors.length)],
-          j
-        )
-      );
-    }
-  }, 500);
+  for (let i = 0; i < 8; i++) {
+    cells.push(
+      new Cell(
+        i * spriteSize,
+        i,
+        level.colors[Math.floor(Math.random() * level.colors.length)],
+        j
+      )
+    );
+  }
 }
 
 function draw() {
